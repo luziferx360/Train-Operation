@@ -20,7 +20,7 @@ function preload() {
 
     game.load.image('sky', 'assets/sky.png');
     game.load.image('station', 'assets/marker-r.png');
-    game.load.spritesheet('module', 'assets/marker-g.png', 32, 48);
+    game.load.image('module', 'assets/marker-g.png');
 
 }
 
@@ -50,19 +50,19 @@ function create() {
     game.physics.arcade.enable(st1);
 
     cursors = game.input.keyboard.createCursorKeys();
-    game.time.events.loop(Phaser.Timer.SECOND/100,move, this);
-    //kuyyyyyy
+    game.time.events.loop(Phaser.Timer.SECOND,move, this);
+    
     
 }
 
 function move(x,y){
-    for (var i = 0; i <= 100; i++) {
-        if(i>1){
+    for (var i = 0; i <= 500; i++) {
+        if(i==50){
             x = 500
             y = 146
-            game.physics.arcade.moveToXY(player,x,y);
+            game.physics.arcade.moveToXY(player,x,y,1000);
         }
-        else if(i>500){
+        else if(i==500){
             x = 0
             y = 169
            game.physics.arcade.moveToXY(player,x,y); 
@@ -76,6 +76,8 @@ function movex(x,y){
         if(i==1){
         x=159;
         y=146;
+        player.body.velocity.x = 0;
+        player.body.velocity.y = 0;
         game.physics.arcade.moveToXY(train,x,y,100000);
         }
         else if(i==2){
@@ -91,14 +93,7 @@ function movex(x,y){
 
 function update(z) {
 
-    //  Collide the player and the stars with the platforms
-    //game.physics.arcade.collide(player, platforms);
-    //game.physics.arcade.collide(stars, platforms);
 
-    //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-    
-
-    //  Reset the players velocity (movement)
    player.body.velocity.x = 0;
    player.body.velocity.y = 0;
 
